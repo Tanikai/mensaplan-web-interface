@@ -12,7 +12,7 @@
 </head>
 
 <body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
-  <div class="navContainer">
+  <header class="navContainer">
     <nav id="topNav">
       <select id="selector">
         <option id="facilityMensa">Mensa Uni</option>
@@ -23,7 +23,7 @@
         <option id="facilityDiner">WestSideDiner</option>
         <!--<option id="facilityHochschulleitung">Cafeteria Hochschulleitung</option>-->
         <!--<option id="facilityHSOE">Hochschule Oberer Eselsberg</option>-->
-        <option id="facilityPrittwitzstr">Mensa Hochschule</option>
+        <!-- <option id="facilityPrittwitzstr">Mensa Hochschule</option> -->
       </select>
     </nav>
     <nav id="bottomNav">
@@ -34,7 +34,7 @@
         <a class="ahover" id="day3" onclick="openDay(3)">Do</a>
         <a class="ahover" id="day4" onclick="openDay(4)">Fr</a>
       </span>
-      <span id="seperator">|</span>
+      <span id="separator">|</span>
       <span id="2ndWeek">
         <a class="ahover" id="day5" onclick="openDay(5)">Mo</a>
         <a class="ahover" id="day6" onclick="openDay(6)">Di</a>
@@ -43,19 +43,17 @@
         <a class="ahover" id="day9" onclick="openDay(9)">Fr</a>
       </span>
     </nav>
-  </div>
+  </header>
   <div id="plan">
   </div>
-  <div class="navContainer">
+  <footer class="navContainer">
     <div id="bottom">
-      <a href="https://github.com/seder/mensaplan-web-interface">Github</a> |
+      <a href="https://github.com/tanikai/mensaplan-web-interface">GitHub</a> |
       <a href="http://www.studentenwerk-ulm.de/index.php?id=25728">Quelle</a> |
-      <a href="http://www.uni-ulm.de/mensaplan/data/">Rohdaten</a> |
-      <a href="http://www.uni-ulm.de/mensaplan/impressum.html">Impressum</a>
+      <a href="http://uulm.anter.dev/">Rohdaten</a> |
+      <a href="http://www.anter.dev/imprint">Impressum</a>
     </div>
-  </div>
-
-  <img src="http://mensaplan.fs-et.de/1x1.png" />
+  </footer>
 </body>
 <script type="text/javascript" src="scripts/main.js"></script>
 
