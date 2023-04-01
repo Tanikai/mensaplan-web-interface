@@ -8,7 +8,7 @@
   Mensaplan der Uni Ulm by FS-ET
   </title>
   <meta charset="utf-8" />
-  <script src="libs/jquery-1.9.1.js"></script>
+  <script src="libs/jquery-3.6.4.min.js"></script>
   <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 <body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
@@ -65,7 +65,7 @@
                 "Cafeteria Hochschulleitung":"Hochschulleitung","Hochschule Oberer Eselsberg":"HSOE",
                 "Cafeteria B":"CB"};
   var weekdays = ["Mo","Di","Mi","Do","Fr","Mo","Di","Mi","Do","Fr"];
-  var urlJSON = "./data/mensaplan.json";
+  var urlJSON = "https://uulm.anter.dev/api/v1/mensaplan.json"
   var urlStaticJSON = "./data/mensaplan_static.json";
   
   function init(){
