@@ -1,66 +1,68 @@
 <!DOCTYPE html>
-<meta el="icon" sizes="192x192" href="img/logo.png">
-<html>
-
+<html lang="de">
 <head>
-  <title>Mensaplan der Uni Ulm :: Kai Anter & FS-ET</title>
-  <meta name="viewport" content="width=device-width">
-  <link r charset="utf-8" />
-  <link rel="icon" href="/img/favicon-32x32.png">
-  <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
-  <link rel="shortcut icon" sizes="196x196" href="/img/android-chrome-192x192.png">
-  <link rel="shortcut icon" sizes="512x512" href="/img/android-chrome-512x512.png">
-  <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
-  <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
+    <meta charset="UTF-8">
+    <title>Mensaplan der Uni Ulm :: Kai Anter & FS-ET</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="icon" href="/img/favicon-32x32.png">
+    <link rel="icon" sizes="192x192" href="/img/logo.png">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" sizes="196x196" href="/img/android-chrome-192x192.png">
+    <link rel="shortcut icon" sizes="512x512" href="/img/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
+    <link rel="icon" href="/img/logo.svg" type="image/svg+xml">
 
-  <meta name="theme-color" content="#7a99ac">
-  <script src="libs/jquery-3.6.4.min.js"></script>
-  <link href="style.css" rel="stylesheet" type="text/css" />
+    <meta name="theme-color" content="#7a99ac">
+    <meta name="description"
+          content="Aktueller Mensaplan der Uni Ulm bzw. Studierendenwerk Ulm mit korrekten Preisen für Studierende.">
+    <meta name="keywords" content="Universität Ulm Studierendenwerk Mensa Plan Süd">
+    <script src="libs/jquery-3.6.4.min.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
-  <header class="navContainer">
+<header class="navContainer">
     <nav id="topNav">
-      <select id="selector">
-        <option id="facilityMensa">Mensa Uni</option>
-        <option id="facilityBistro">Bistro</option>
-        <option id="facilityBurgerbar">Burgerbar Cafeteria SouthSide</option>
-        <option id="facilityCB">Cafeteria B</option>
-        <option id="facilityWest">Cafeteria West</option>
-        <option id="facilityDiner">WestSideDiner</option>
-        <!--<option id="facilityHochschulleitung">Cafeteria Hochschulleitung</option>-->
-        <!--<option id="facilityHSOE">Hochschule Oberer Eselsberg</option>-->
-        <!-- <option id="facilityPrittwitzstr">Mensa Hochschule</option> -->
-      </select>
+        <select id="selector">
+            <option id="facilityMensa">Mensa Uni</option>
+            <option id="facilityBistro">Bistro</option>
+            <option id="facilityBurgerbar">Burgerbar Cafeteria SouthSide</option>
+            <option id="facilityCB">Cafeteria B</option>
+            <option id="facilityWest">Cafeteria West</option>
+            <option id="facilityDiner">WestSideDiner</option>
+            <!--<option id="facilityHochschulleitung">Cafeteria Hochschulleitung</option>-->
+            <!--<option id="facilityHSOE">Hochschule Oberer Eselsberg</option>-->
+            <!-- <option id="facilityPrittwitzstr">Mensa Hochschule</option> -->
+        </select>
     </nav>
     <nav id="bottomNav">
       <span id="1stWeek">
-        <a class="ahover" id="day0" onclick="openDay(0)">Mo</a>
-        <a class="ahover" id="day1" onclick="openDay(1)">Di</a>
-        <a class="ahover" id="day2" onclick="openDay(2)">Mi</a>
-        <a class="ahover" id="day3" onclick="openDay(3)">Do</a>
-        <a class="ahover" id="day4" onclick="openDay(4)">Fr</a>
+        <button class="ahover" id="day0" onclick="openDay(0)">Mo</button>
+        <button class="ahover" id="day1" onclick="openDay(1)">Di</button>
+        <button class="ahover" id="day2" onclick="openDay(2)">Mi</button>
+        <button class="ahover" id="day3" onclick="openDay(3)">Do</button>
+        <button class="ahover" id="day4" onclick="openDay(4)">Fr</button>
       </span>
-      <span id="separator">|</span>
-      <span id="2ndWeek">
-        <a class="ahover" id="day5" onclick="openDay(5)">Mo</a>
-        <a class="ahover" id="day6" onclick="openDay(6)">Di</a>
-        <a class="ahover" id="day7" onclick="openDay(7)">Mi</a>
-        <a class="ahover" id="day8" onclick="openDay(8)">Do</a>
-        <a class="ahover" id="day9" onclick="openDay(9)">Fr</a>
+        <span id="separator">|</span>
+        <span id="2ndWeek">
+        <button class="ahover" id="day5" onclick="openDay(5)">Mo</button>
+        <button class="ahover" id="day6" onclick="openDay(6)">Di</button>
+        <button class="ahover" id="day7" onclick="openDay(7)">Mi</button>
+        <button class="ahover" id="day8" onclick="openDay(8)">Do</button>
+        <button class="ahover" id="day9" onclick="openDay(9)">Fr</button>
       </span>
     </nav>
-  </header>
-  <div id="plan">
-  </div>
-  <footer class="navContainer">
+</header>
+<div id="plan">
+</div>
+<footer class="navContainer">
     <div id="bottom">
-      <a href="https://github.com/tanikai/mensaplan-web-interface">GitHub</a> |
-      <a href="http://www.studentenwerk-ulm.de/index.php?id=25728">Quelle</a> |
-      <a href="http://uulm.anter.dev/">Rohdaten</a> |
-      <a href="http://www.anter.dev/imprint">Impressum</a>
+        <a href="https://github.com/tanikai/mensaplan-web-interface">GitHub</a> |
+        <a href="https://studierendenwerk-ulm.de/essen-trinken/speiseplaene/">Quelle</a> |
+        <a href="https://uulm.anter.dev/">Rohdaten</a> |
+        <a href="https://www.anter.dev/imprint">Impressum</a>
     </div>
-  </footer>
+</footer>
 </body>
 <script type="text/javascript" src="scripts/main.js"></script>
 
