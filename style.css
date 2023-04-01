@@ -1,45 +1,73 @@
-/* :root {
-  --black
-} */
+:root {
+    --accent-background: #7a99ac;
+    --container-background: #fff;
+    --background: #f8f9fc;
+    --text-color: #000;
+    --border-color: grey;
+}
 
 * {
     font-family: 'Fira Sans', Liberation Sans, Droid Sans, Helvetica, Verdana, sans-serif;
     margin: 0;
     box-sizing: border-box;
+    font-size: 1em;
 }
 
 body {
-    font-size: 1em;
-    max-width: 900px;
-    background-color: #e5ebee;
-    padding: 0% 2% 2% 2%;
-    margin: 0px auto;
+    background-color: var(--background);
 }
 
-#topNav {
-    background-color: #9bbbca;
-}
+/* HEADER */
 
-#bottomNav {
-    background-color: #9bbbca;
+header, footer {
+    width: 100%;
+    background-color: var(--accent-background);
 }
 
 nav {
     display: table;
     width: 100%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    margin-top: 1%;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
     text-align: center;
-    border: 1px solid #c6d4de;
 }
 
-nav > a {
-    display: table-cell;
-    text-align: center;
-    margin: 5%;
-    cursor: pointer;
-    width: 16%;
+#day-selection {
+    padding: 0 2%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 0.25em;
+    grid-template-columns: repeat(10, 1fr);
+    justify-content: space-between;
+}
+
+.day {
+    width: 100%;
+    border-radius: 0.5em 0.5em 0 0;
+}
+
+@media only screen and (max-width: 640px) {
+    #day-selection {
+        gap: 0.25rem;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        padding-bottom: 0.5em;
+    }
+
+    .day {
+        border-radius: 0.5em;
+    }
+}
+
+
+.day:hover {
+    text-decoration: underline;
+}
+
+.active {
+    font-weight: bold;
+    background-color: var(--background);
 }
 
 span {
@@ -51,13 +79,9 @@ span {
 button {
     min-width: 48px;
     min-height: 48px;
-    margin: 0 0.5em;
     background-color: #9bbbca;
     border: none;
-}
-
-#separator {
-    width: 4%;
+    cursor: pointer;
 }
 
 span > a {
@@ -70,17 +94,24 @@ a:visited {
     color: #000;
 }
 
-.ahover:hover {
-    color: #fff;
+
+
+/* CONTENT */
+
+#plan {
+    padding: 0 2% 2% 2%;
+    margin: 0 auto;
+    max-width: 900px;
 }
 
 .mealFrame {
-    color: #000;
-    padding: 1%;
-    background-color: #fff;
-    margin-top: 1%;
-    border: 1px solid #c6d4de;
+    background-color: var(--container-background);
+    padding: 1em;
+    margin-top: 1em;
+    border: 1px solid var(--border-color);
+    border-radius: 0.5em;
     position: relative;
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))
 }
 
 .contains {
@@ -101,21 +132,20 @@ a {
     font-weight: 600;
 }
 
-#bottom {
-    color: #000;
-    padding: 1%;
-    background-color: #9bbbca;
-    margin-top: 1%;
-    text-align: right;
-    border: 1px solid #c6d4de;
+footer {
+    background-color: var(--accent-background);
+    text-align: left;
+    position: fixed;
+    bottom: 0;
+    padding: 1em;
     font-weight: 300;
 }
 
 #selector {
-    width: 98%;
     font-size: 1em;
     background-color: #fff;
     border: 1px solid #c6d4de;
+    height: 48px;
 }
 
 .price {
@@ -123,6 +153,4 @@ a {
     font-style: italic;
 }
 
-.active {
-    font-weight: bold;
-}
+

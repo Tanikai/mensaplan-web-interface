@@ -21,7 +21,7 @@
 </head>
 
 <body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
-<header class="navContainer">
+<header>
     <nav id="topNav">
         <select id="selector">
             <option id="facilityMensa">Mensa Uni</option>
@@ -35,32 +35,28 @@
             <!-- <option id="facilityPrittwitzstr">Mensa Hochschule</option> -->
         </select>
     </nav>
-    <nav id="bottomNav">
-      <span id="1stWeek">
-        <button class="ahover" id="day0" onclick="openDay(0)">Mo</button>
-        <button class="ahover" id="day1" onclick="openDay(1)">Di</button>
-        <button class="ahover" id="day2" onclick="openDay(2)">Mi</button>
-        <button class="ahover" id="day3" onclick="openDay(3)">Do</button>
-        <button class="ahover" id="day4" onclick="openDay(4)">Fr</button>
-      </span>
-        <span id="separator">|</span>
-        <span id="2ndWeek">
-        <button class="ahover" id="day5" onclick="openDay(5)">Mo</button>
-        <button class="ahover" id="day6" onclick="openDay(6)">Di</button>
-        <button class="ahover" id="day7" onclick="openDay(7)">Mi</button>
-        <button class="ahover" id="day8" onclick="openDay(8)">Do</button>
-        <button class="ahover" id="day9" onclick="openDay(9)">Fr</button>
-      </span>
+    <nav id="day-selection">
+        <button class="day w1" id="day0" onclick="openDay(0)">Mo</button>
+        <button class="day w1" id="day1" onclick="openDay(1)">Di</button>
+        <button class="day w1" id="day2" onclick="openDay(2)">Mi</button>
+        <button class="day w1" id="day3" onclick="openDay(3)">Do</button>
+        <button class="day w1" id="day4" onclick="openDay(4)">Fr</button>
+
+        <button class="day w2" id="day5" onclick="openDay(5)">Mo</button>
+        <button class="day w2" id="day6" onclick="openDay(6)">Di</button>
+        <button class="day w2" id="day7" onclick="openDay(7)">Mi</button>
+        <button class="day w2" id="day8" onclick="openDay(8)">Do</button>
+        <button class="day w2" id="day9" onclick="openDay(9)">Fr</button>
     </nav>
 </header>
 <div id="plan">
 </div>
 <footer class="navContainer">
     <div id="bottom">
-        <a href="https://github.com/tanikai/mensaplan-web-interface">GitHub</a> |
-        <a href="https://studierendenwerk-ulm.de/essen-trinken/speiseplaene/">Quelle</a> |
-        <a href="https://uulm.anter.dev/">Rohdaten</a> |
-        <a href="https://www.anter.dev/imprint">Impressum</a>
+        <a href="https://github.com/tanikai/mensaplan-web-interface" target="_blank">GitHub</a> |
+        <a href="https://studierendenwerk-ulm.de/essen-trinken/speiseplaene/" target="_blank">Quelle</a> |
+        <a href="https://uulm.anter.dev/" target="_blank">Rohdaten</a> |
+        <a href="https://www.anter.dev/imprint" target="_blank">Impressum</a>
     </div>
 </footer>
 </body>

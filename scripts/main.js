@@ -64,7 +64,7 @@ function init() {
 
         var index = daysArray.indexOf(date);
         if (index != -1)
-            document.getElementById("day" + index).className = "active";
+            document.getElementById("day" + index).className = "day active";
     });
 }
 
@@ -278,7 +278,7 @@ function getDateOfISOWeek(weekNumber) {
 
 function reset() {
     for (i = 0; i < 10; i++) {
-        document.getElementById("day" + i).className = "";
+        document.getElementById("day" + i).className = "day";
     }
     $("div").remove(".mealFrame");
 }
