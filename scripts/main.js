@@ -218,7 +218,7 @@ function selectFacilityInDropdown() {
 function printPlan(plan) {
     const oldTable = document.getElementById('plan'),
         newTable = oldTable.cloneNode(true);
-    if (plan !== undefined && plan.meals !== undefined) {
+    if (plan !== undefined && plan.meals !== undefined && plan.open === true) {
         for (let i = 0; i < plan.meals.length; i++) {
             const tr = document.createElement('div');
             tr.className = "meal-frame";
