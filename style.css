@@ -4,6 +4,7 @@
     --background: #f8f9fc;
     --text-color: #000;
     --border-color: grey;
+    --button-background: #9bbbca;
 }
 
 * {
@@ -13,8 +14,19 @@
     font-size: 1em;
 }
 
+/* GENERAL */
+
 body {
     background-color: var(--background);
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000;
 }
 
 /* HEADER */
@@ -32,6 +44,13 @@ nav {
     text-align: center;
 }
 
+#mensa-select {
+    font-size: 1em;
+    background-color: var(--background);
+    border: 1px solid var(--border-color);
+    height: 28px;
+}
+
 #day-selection {
     padding: 0 2%;
     max-width: 900px;
@@ -47,6 +66,23 @@ nav {
     border-radius: 0.5em 0.5em 0 0;
 }
 
+.day:hover {
+    text-decoration: underline;
+}
+
+button {
+    min-width: 48px;
+    min-height: 48px;
+    background-color: var(--button-background);
+    border: none;
+    cursor: pointer;
+}
+
+.active {
+    font-weight: bold;
+    background-color: var(--background);
+}
+
 @media only screen and (max-width: 640px) {
     #day-selection {
         gap: 0.25rem;
@@ -60,42 +96,6 @@ nav {
     }
 }
 
-
-.day:hover {
-    text-decoration: underline;
-}
-
-.active {
-    font-weight: bold;
-    background-color: var(--background);
-}
-
-span {
-    display: table;
-    width: 48%;
-    float: left;
-}
-
-button {
-    min-width: 48px;
-    min-height: 48px;
-    background-color: #9bbbca;
-    border: none;
-    cursor: pointer;
-}
-
-span > a {
-    display: table-cell;
-    text-align: center;
-    cursor: pointer;
-}
-
-a:visited {
-    color: #000;
-}
-
-
-
 /* CONTENT */
 
 #plan {
@@ -104,14 +104,14 @@ a:visited {
     max-width: 900px;
 }
 
-.mealFrame {
+.meal-frame {
     background-color: var(--container-background);
     padding: 1em;
     margin-top: 1em;
     border: 1px solid var(--border-color);
     border-radius: 0.5em;
     position: relative;
-    filter: drop-shadow(0 1px 2px rgba(0,0,0,.1)) drop-shadow(0 1px 1px rgba(0,0,0,.06))
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .1)) drop-shadow(0 1px 1px rgba(0, 0, 0, .06))
 }
 
 .contains {
@@ -123,14 +123,16 @@ a:visited {
     right: 1%;
 }
 
-a {
-    color: #000;
-    text-decoration: none;
-}
-
 .category {
     font-weight: 600;
 }
+
+.price {
+    text-align: right;
+    font-style: italic;
+}
+
+/* FOOTER */
 
 footer {
     background-color: var(--accent-background);
@@ -140,17 +142,3 @@ footer {
     padding: 1em;
     font-weight: 300;
 }
-
-#selector {
-    font-size: 1em;
-    background-color: #fff;
-    border: 1px solid #c6d4de;
-    height: 48px;
-}
-
-.price {
-    text-align: right;
-    font-style: italic;
-}
-
-

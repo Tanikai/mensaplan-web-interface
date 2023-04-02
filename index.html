@@ -22,8 +22,8 @@
 
 <body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
 <header>
-    <nav id="topNav">
-        <select id="selector">
+    <nav>
+        <select id="mensa-select">
             <option id="facilityMensa">Mensa Uni</option>
             <option id="facilityBistro">Bistro</option>
             <option id="facilityBurgerbar">Burgerbar Cafeteria SouthSide</option>
@@ -49,9 +49,8 @@
         <button class="day w2" id="day9" onclick="openDay(9)">Fr</button>
     </nav>
 </header>
-<div id="plan">
-</div>
-<footer class="navContainer">
+<div id="plan"></div>
+<footer>
     <div id="bottom">
         <a href="https://github.com/tanikai/mensaplan-web-interface" target="_blank">GitHub</a> |
         <a href="https://studierendenwerk-ulm.de/essen-trinken/speiseplaene/" target="_blank">Quelle</a> |
@@ -61,5 +60,4 @@
 </footer>
 </body>
 <script type="text/javascript" src="scripts/main.js"></script>
-
 </html>

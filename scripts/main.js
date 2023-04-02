@@ -183,7 +183,7 @@ function addDateToWeekdays(startDate, startIndex) {
 }
 
 function selectFacilityInDropdown() {
-    var sel = document.getElementById("selector");
+    var sel = document.getElementById("mensa-select");
     var val = document.getElementById("facility" + facility).value;
     for (var i = 0, j = sel.options.length; i < j; ++i) {
         if (sel.options[i].innerHTML === val) {
@@ -199,7 +199,7 @@ function printPlan(plan) {
     if (plan != undefined && plan.meals != undefined) {
         for (var i = 0; i < plan.meals.length; i++) {
             var tr = document.createElement('div');
-            tr.className = "mealFrame";
+            tr.className = "meal-frame";
             var mealWidth = "100%";
             if (plan.meals[i].contains != undefined) {
                 var img = document.createElement('img');
@@ -227,7 +227,7 @@ function printPlan(plan) {
         }
     } else {
         var tr = document.createElement('div');
-        tr.className = "mealFrame";
+        tr.className = "meal-frame";
         var mealWidth = "100%";
         var td = document.createElement('div');
         td.className = "category";
@@ -238,7 +238,7 @@ function printPlan(plan) {
     oldTable.parentNode.replaceChild(newTable, oldTable);
 }
 
-document.getElementById("selector").onchange = function () {
+document.getElementById("mensa-select").onchange = function () {
     facility = mensen[this.value];
     setAnchor(facility, date, refresh);
 };
@@ -280,7 +280,7 @@ function reset() {
     for (i = 0; i < 10; i++) {
         document.getElementById("day" + i).className = "day";
     }
-    $("div").remove(".mealFrame");
+    $("div").remove(".meal-frame");
 }
 
 function setAnchor(facility, day, refresh) {
