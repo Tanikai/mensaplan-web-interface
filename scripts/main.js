@@ -1,8 +1,8 @@
-var facility;
-var date;
-var refresh;
-var daysArray = [];
-var mensen = {
+let facility;
+let date;
+let refresh;
+let daysArray = [];
+const mensen = {
     "Mensa Uni": "Mensa",
     "Bistro": "Bistro",
     "Cafeteria West": "West",
@@ -13,45 +13,42 @@ var mensen = {
     "Hochschule Oberer Eselsberg": "HSOE",
     "Cafeteria B": "CB"
 };
-var weekdays = ["Mo", "Di", "Mi", "Do", "Fr", "Mo", "Di", "Mi", "Do", "Fr"];
-var urlJSON = "https://uulm.anter.dev/api/v1/mensaplan.json";
-var urlStaticJSON = "./data/mensaplan_static.json";
+const urlJSON = "https://uulm.anter.dev/api/v1/mensaplan.json";
+const urlStaticJSON = "./data/mensaplan_static.json";
 
 function init() {
 
     parseAnchor();
 
-    if (refresh != undefined) timedRefresh(10 * 60 * 1000); //every 10 minutes
+    if (refresh !== undefined) timedRefresh(10 * 60 * 1000); //every 10 minutes
 
     $.getJSON(urlJSON, (data) => {
+        let noOfWeeks = 1;
+        while (data.weeks[noOfWeeks] !== undefined) noOfWeeks++;
 
-        var noOfWeeks = 1;
-        while (data.weeks[noOfWeeks] != undefined) noOfWeeks++;
-
-        var coordinates = getCoordinatesInJSON(date, data, noOfWeeks);
+        const coordinates = getCoordinatesInJSON(date, data, noOfWeeks);
 
         date = coordinates.date;
 
         reset();
 
-        if (daysArray[0] == undefined) {
+        if (daysArray[0] === undefined) {
             //do this only when landing on page
             initDaysList(data, noOfWeeks);
         }
 
-        if (!(facility == "Diner" || facility == "Burgerbar")) {
-            if (coordinates.found == true) {
+        if (!(facility === "Diner" || facility === "Burgerbar")) {
+            if (coordinates.found === true) {
                 printPlan(data.weeks[coordinates.week].days[coordinates.day][facility]);
             }
-        }
-        else
-        // static food plan -> different file
+        } else
+            // static food plan -> different file
         {
             $.getJSON(urlStaticJSON, function (staticData) {
 
-                weekday = new Date(date).getDay() - 1;
+                let weekday = new Date(date).getDay() - 1;
 
-                if (weekday == -1 || weekday == 5) {
+                if (weekday === -1 || weekday === 5) {
                     // weekend--> show monday
                     weekday = 0;
                 }
@@ -62,37 +59,37 @@ function init() {
 
         selectFacilityInDropdown();
 
-        var index = daysArray.indexOf(date);
-        if (index != -1)
+        const index = daysArray.indexOf(date);
+        if (index !== -1)
             document.getElementById("day" + index).className = "day active";
     });
 }
 
 /*
-    * sets global variables facility, date, and refresh according to anchor
-    */
+* sets global variables facility, date, and refresh according to anchor
+*/
 function parseAnchor() {
-    var anchor = window.location.hash.substr(1);
-    if (anchor == "") { // default: Mensa, today
+    const anchor = window.location.hash.substr(1);
+    if (anchor === "") { // default: Mensa, today
         facility = 'Mensa';
         date = getDayString(0);
     } else {
         facility = anchor.split('&')[0];
         date = anchor.split('&')[1];
         refresh = anchor.split('&')[2];
-        if (date == "today" || date == "heute" || date == undefined)
+        if (date === "today" || date === "heute" || date === undefined)
             date = getDayString(0);
-        if (date == "tomorrow" || date == "morgen")
+        if (date === "tomorrow" || date === "morgen")
             date = getDayString(1);
-        if (date == "yesterday" || date == "gestern")
+        if (date === "yesterday" || date === "gestern")
             date = getDayString(-1);
-        if (date == "next")// shows today's plan during opening hours, 
-        // tomorrows when facility is closed 
-        // (exact to one hour)
+        if (date === "next")// shows today's plan during opening hours,
+            // tomorrows when facility is closed
+            // (exact to one hour)
         {
-            var now = new Date().getHours();
-            var closingTime = 14;
-            if (facility == "bistro") closingTime = 19;
+            const now = new Date().getHours();
+            let closingTime = 14;
+            if (facility === "bistro") closingTime = 19;
             if (now < closingTime)
                 date = getDayString(0);
             else
@@ -103,10 +100,10 @@ function parseAnchor() {
 
 function initDaysList(data, noOfWeeks) {
     if (noOfWeeks >= 2) {
-        var mon1 = getDateOfISOWeek(data.weeks[0].weekNumber);
-        var mon2 = getDateOfISOWeek(data.weeks[1].weekNumber);
-        if (mon2 < mon1) { 
-            var tmp = mon1;
+        let mon1 = getDateOfISOWeek(data.weeks[0].weekNumber);
+        let mon2 = getDateOfISOWeek(data.weeks[1].weekNumber);
+        if (mon2 < mon1) {
+            let tmp = mon1;
             mon1 = mon2;
             mon2 = tmp;
         }
@@ -121,29 +118,29 @@ function initDaysList(data, noOfWeeks) {
 }
 
 function getCoordinatesInJSON(date, data, noOfWeeks) {
-    var originalDate = date;
-    var found = false;
-    for (k = 0; k < 3; k++) {
-        for (i = 0; i < noOfWeeks; i++) {
-            for (j = 0; j < data.weeks[i].days.length; j++) {
-                if (data.weeks[i].days[j].date == date) {
+    const originalDate = date;
+    let found = false;
+    let week, day;
+    for (let k = 0; k < 3; k++) {
+        for (let i = 0; i < noOfWeeks; i++) {
+            for (let j = 0; j < data.weeks[i].days.length; j++) {
+                if (data.weeks[i].days[j].date === date) {
                     found = true;
                     week = i;
                     day = j;
                 }
             }
         }
-        if (found == false) {//closed today, maybe plan for tomorrow?
+        if (found === false) {//closed today, maybe plan for tomorrow?
             date = getISOStringOfDate(new Date(new Date(date).getTime() + 24 * 60 * 60 * 1000));
-        }
-        else break;
+        } else break;
     }
-    if (found == false) {
+    if (found === false) {
         // failsafe: requested date and the next two days not
         // found, try today. If that doesn't work either
         // just take the first one.
-        today = getISOStringOfDate(new Date());
-        if (date != today && originalDate != today) {
+        const today = getISOStringOfDate(new Date());
+        if (date !== today && originalDate !== today) {
             return getCoordinatesInJSON(today, data, noOfWeeks);
         } else {
             return {
@@ -167,15 +164,15 @@ function timedRefresh(timeoutPeriod) {
 }
 
 function getDayString(offset) {
-    var day = new Date(new Date().getTime() + offset * 24 * 60 * 60 * 1000);
+    const day = new Date(new Date().getTime() + offset * 24 * 60 * 60 * 1000);
     return getISOStringOfDate(day);
 }
 
 function addDateToWeekdays(startDate, startIndex) {
-    var dateToAdd = startDate;
-    for (i = startIndex; i < startIndex + 5; i++) {
+    let dateToAdd = startDate;
+    for (let i = startIndex; i < startIndex + 5; i++) {
         daysArray[i] = getISOStringOfDate(dateToAdd);
-        var dayToShow = dateToAdd.getDate();
+        let dayToShow = dateToAdd.getDate();
         if (dayToShow <= 9) dayToShow = "0" + dayToShow;
         document.getElementById("day" + i).textContent = dayToShow + " " + document.getElementById("day" + i).textContent;
         dateToAdd = new Date(dateToAdd.getTime() + 24 * 60 * 60 * 1000);
@@ -183,9 +180,9 @@ function addDateToWeekdays(startDate, startIndex) {
 }
 
 function selectFacilityInDropdown() {
-    var sel = document.getElementById("mensa-select");
-    var val = document.getElementById("facility" + facility).value;
-    for (var i = 0, j = sel.options.length; i < j; ++i) {
+    let sel = document.getElementById("mensa-select");
+    const val = document.getElementById("facility" + facility).value;
+    for (let i = 0, j = sel.options.length; i < j; ++i) {
         if (sel.options[i].innerHTML === val) {
             sel.selectedIndex = i;
             break;
@@ -194,42 +191,41 @@ function selectFacilityInDropdown() {
 }
 
 function printPlan(plan) {
-    var oldTable = document.getElementById('plan'),
+    const oldTable = document.getElementById('plan'),
         newTable = oldTable.cloneNode(true);
-    if (plan != undefined && plan.meals != undefined) {
-        for (var i = 0; i < plan.meals.length; i++) {
-            var tr = document.createElement('div');
+    if (plan !== undefined && plan.meals !== undefined) {
+        for (let i = 0; i < plan.meals.length; i++) {
+            const tr = document.createElement('div');
             tr.className = "meal-frame";
-            var mealWidth = "100%";
-            if (plan.meals[i].contains != undefined) {
-                var img = document.createElement('img');
+            let mealWidth = "100%";
+            if (plan.meals[i].contains !== undefined) {
+                let img = document.createElement('img');
                 img.src = "img/" + plan.meals[i].contains + ".png";
                 img.alt = "This meal contains " + plan.meals[i].contains + ".";
                 img.className = "contains";
                 mealWidth = "90%";
                 tr.appendChild(img);
             }
-            var td = document.createElement('div');
+            let td = document.createElement('div');
             td.className = "category";
             td.appendChild(document.createTextNode(plan.meals[i].category));
             tr.appendChild(td);
-            var td = document.createElement('div');
+            td = document.createElement('div');
             td.className = "meal";
             td.appendChild(document.createTextNode(plan.meals[i].meal));
             td.style.width = mealWidth;
             tr.appendChild(td);
-            var td = document.createElement('div');
+            td = document.createElement('div');
             td.className = "price";
-            if (plan.meals[i].price != undefined)
+            if (plan.meals[i].price !== undefined)
                 td.appendChild(document.createTextNode(plan.meals[i].price));
             tr.appendChild(td);
             newTable.appendChild(tr);
         }
     } else {
-        var tr = document.createElement('div');
+        let tr = document.createElement('div');
         tr.className = "meal-frame";
-        var mealWidth = "100%";
-        var td = document.createElement('div');
+        let td = document.createElement('div');
         td.className = "category";
         td.appendChild(document.createTextNode("geschlossen"));
         tr.appendChild(td);
@@ -249,8 +245,8 @@ function openDay(idx) {
 }
 
 function getISOStringOfDate(date2) {
-    var dd = date2.getDate();
-    var mm = date2.getMonth() + 1; //January is 0
+    let dd = date2.getDate();
+    let mm = date2.getMonth() + 1; //January is 0
 
     if (dd < 10) {
         dd = '0' + dd
@@ -260,15 +256,15 @@ function getISOStringOfDate(date2) {
         mm = '0' + mm
     }
 
-    var yyyy = date2.getFullYear();
+    let yyyy = date2.getFullYear();
     return yyyy + '-' + mm + '-' + dd;
 }
 
 function getDateOfISOWeek(weekNumber) {
-    var year = new Date().getFullYear();
-    var simple = new Date(year, 0, 1 + (weekNumber - 1) * 7);
-    var dayOfWeek = simple.getDay();
-    var ISOweekStart = simple;
+    const year = new Date().getFullYear();
+    const simple = new Date(year, 0, 1 + (weekNumber - 1) * 7);
+    const dayOfWeek = simple.getDay();
+    let ISOweekStart = simple;
     if (dayOfWeek <= 4)
         ISOweekStart.setDate(simple.getDate() - simple.getDay() + 1);
     else
@@ -277,27 +273,27 @@ function getDateOfISOWeek(weekNumber) {
 }
 
 function reset() {
-    for (i = 0; i < 10; i++) {
+    for (let i = 0; i < 10; i++) {
         document.getElementById("day" + i).className = "day";
     }
     $("div").remove(".meal-frame");
 }
 
 function setAnchor(facility, day, refresh) {
-    if (refresh != undefined)
+    if (refresh !== undefined)
         window.location.assign('#' + facility + "&" + day + "&refresh");
     else
         window.location.assign('#' + facility + "&" + day);
 }
 
 /*
-    * Functions for touch and keyboard navigation
-    */
-// direction: -1 for yesterday, 1 for tomorrow
+* Functions for touch and keyboard navigation
+* direction: -1 for yesterday, 1 for tomorrow
+*/
 function adjacentDay(direction) {
-    for (i = 0; i < 3; i++) {
-        var day = getISOStringOfDate(new Date(new Date(date).getTime() + direction * (i + 1) * 24 * 60 * 60 * 1000));
-        if ($.inArray(day, daysArray) != -1) {
+    for (let i = 0; i < 3; i++) {
+        const day = getISOStringOfDate(new Date(new Date(date).getTime() + direction * (i + 1) * 24 * 60 * 60 * 1000));
+        if ($.inArray(day, daysArray) !== -1) {
             setAnchor(facility, day, refresh);
             break;
         }
@@ -305,28 +301,27 @@ function adjacentDay(direction) {
 }
 
 // left/right swipe on mobile
-
 document.addEventListener('touchstart', handleTouchStart, false);
 document.addEventListener('touchmove', handleTouchMove, false);
 
-var xDown = null;
-var yDown = null;
+let xDown = null;
+let yDown = null;
 
 function handleTouchStart(evt) {
     xDown = evt.touches[0].clientX;
     yDown = evt.touches[0].clientY;
-};
+}
 
 function handleTouchMove(evt) {
     if (!xDown || !yDown) {
         return;
     }
 
-    var xUp = evt.touches[0].clientX;
-    var yUp = evt.touches[0].clientY;
+    const xUp = evt.touches[0].clientX;
+    const yUp = evt.touches[0].clientY;
 
-    var xDiff = xDown - xUp;
-    var yDiff = yDown - yUp;
+    const xDiff = xDown - xUp;
+    const yDiff = yDown - yUp;
 
     if (Math.abs(xDiff) > Math.abs(yDiff)) { // ignore up / down swipe
         if (xDiff > 0) {
@@ -339,11 +334,11 @@ function handleTouchMove(evt) {
     // reset values
     xDown = null;
     yDown = null;
-};
+}
 
 // left/right keyboard input
 function pressed(e) {
-    cxc = e.keyCode;
+    const cxc = e.keyCode;
     if (cxc == 37 || cxc == 39) {
         e.preventDefault();
         if (cxc == 37)//left
