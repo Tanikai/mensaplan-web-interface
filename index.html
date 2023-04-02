@@ -18,23 +18,27 @@
     <meta name="keywords" content="Universität Ulm Studierendenwerk Mensa Plan Süd">
     <script src="libs/jquery-3.6.4.min.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="styles/tokens.css">
 </head>
 
 <body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
 <header>
-    <nav>
-        <label for="mensa-select">Mensa</label>
-        <select id="mensa-select">
-            <option id="facilityMensa">Mensa Uni Süd</option>
-            <option id="facilityBistro">Cafeteria Nord Pizza und Pasta</option>
-            <option id="facilityBurgerbar">Burger Bar</option>
-<!--            <option id="facilityCB">Cafeteria B</option>-->
-            <option id="facilityWest">Cafeteria Uni West</option>
-            <option id="facilityDiner">Imbisswagen Westside Diner</option>
-            <!--<option id="facilityHochschulleitung">Cafeteria Hochschulleitung</option>-->
-            <!--<option id="facilityHSOE">Hochschule Oberer Eselsberg</option>-->
-            <!-- <option id="facilityPrittwitzstr">Mensa Hochschule</option> -->
-        </select>
+    <nav id="canteen-selection">
+        <h1>UUlm Mensa</h1>
+        <div>
+            <select id="mensa-select">
+                <option id="facilityMensa">Mensa Uni Süd</option>
+                <option id="facilityBistro">Cafeteria Nord</option>
+                <option id="facilityBurgerbar">Burger Bar</option>
+                <!--<option id="facilityCB">Cafeteria B</option>-->
+                <option id="facilityWest">Cafeteria Uni West</option>
+                <option id="facilityDiner">Westside Diner</option>
+                <!--<option id="facilityHochschulleitung">Cafeteria Hochschulleitung</option>-->
+                <!--<option id="facilityHSOE">Hochschule Oberer Eselsberg</option>-->
+                <!-- <option id="facilityPrittwitzstr">Mensa Hochschule</option> -->
+                <p>▼</p>
+            </select>
+        </div>
     </nav>
     <nav id="day-selection">
         <button class="day w1" id="day0" onclick="openDay(0)">Mo</button>

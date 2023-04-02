@@ -5,9 +5,9 @@ let daysArray = [];
 // HTML Tag : API
 const canteens = {
     "Mensa Uni Süd": "Mensa",
-    "Cafeteria Nord Pizza und Pasta": "Bistro",
+    "Cafeteria Nord": "Bistro",
     "Cafeteria Uni West": "West",
-    "Imbisswagen Westside Diner": "Diner",
+    "Westside Diner": "Diner",
     "Burger Bar": "Burgerbar",
     // "Mensa Hochschule": "Prittwitzstr",
     // "Cafeteria Hochschulleitung": "Hochschulleitung",
@@ -225,7 +225,9 @@ function printPlan(plan) {
 
             let td = document.createElement('div');
             td.className = "category";
-            td.appendChild(document.createTextNode(plan.meals[i].category));
+            const h2 = document.createElement("h2");
+            h2.textContent = plan.meals[i].category;
+            td.appendChild(h2);
             tr.appendChild(td);
             td = document.createElement('div');
             td.className = "meal";

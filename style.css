@@ -1,11 +1,12 @@
+@import url(styles/theme.css);
+
 :root {
-    --accent-background: #7a99ac;
-    --container-background: #fff;
-    --background: #f8f9fc;
-    --text-color: #000;
-    --border-color: grey;
-    --button-background: #9bbbca;
+    --md-sys-color-shadow-rgb: 0 0 0;
+    --md-sys-elevation-0: 0px 0px 0px 0px rgb(var(--md-sys-color-shadow-rgb) / 0.2), 0px 0px 0px 0px rgb(var(--md-sys-color-shadow-rgb) / 0.14), 0px 0px 0px 0px rgb(var(--md-sys-color-shadow-rgb) / 0.12);
+    --md-sys-elevation-1: 0px 3px 1px -2px rgb(var(--md-sys-color-shadow-rgb) / 0.2), 0px 2px 2px 0px rgb(var(--md-sys-color-shadow-rgb) / 0.14), 0px 1px 5px 0px rgb(var(--md-sys-color-shadow-rgb) / 0.12);
+
 }
+
 
 * {
     font-family: 'Fira Sans', Liberation Sans, Droid Sans, Helvetica, Verdana, sans-serif;
@@ -17,43 +18,78 @@
 /* GENERAL */
 
 body {
-    background-color: var(--background);
+    color: var(--md-sys-color-on-background);
+    background-color: var(--md-sys-color-background);
     width: 100%;
 }
 
 a {
-    color: var(--text-color);
+    color: var(--md-sys-color-primary);
     text-decoration: none;
 }
 
 a:visited {
-    color: #000;
+    color: var(--md-sys-color-primary);
+}
+
+h1 {
+    font-size: 1.8em;
+}
+
+h2 {
+    font-size: 1.4em;
+}
+
+select {
+    font-size: 1em;
+    color: var(--md-sys-color-primary);
+    background-color: var(--md-sys-color-surface);
+    padding: 0.5em;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--md-sys-color-outline);
+    text-align: center;
 }
 
 /* HEADER */
 
 header, footer {
     width: 100%;
-    background-color: var(--accent-background);
+    color: var(--md-sys-color-on-surface);
+    background-color: var(--surface-1);
+    box-sizing: unset;
+}
+
+header {
+    /*border-bottom: 1px solid var(--md-sys-color-outline);*/
+    padding-bottom: 0.5em;
 }
 
 nav {
-    display: table;
     width: 100%;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    padding: 1em;
     text-align: center;
 }
 
+#canteen-selection {
+    color: var(--md-sys-color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    width: 100%;
+}
+
+#canteen-selection > div {
+    margin-left: auto;
+}
+
 #mensa-select {
-    font-size: 1em;
-    background-color: var(--background);
-    border: 1px solid var(--border-color);
-    height: 28px;
+    margin-left: auto;
 }
 
 #day-selection {
-    padding: 0 2%;
+    padding-top: 0;
+    padding-bottom: 0.25em;
     max-width: 900px;
     margin: 0 auto;
     display: grid;
@@ -64,23 +100,29 @@ nav {
 
 .day {
     width: 100%;
-    border-radius: 0.5em 0.5em 0 0;
+    color: var(--md-sys-color-primary);
+    background-color: var(--md-sys-color-surface);
+    transition: box-shadow 0.2s ease-in-out 0s;
 }
 
 .day:hover {
-    text-decoration: underline;
+    box-shadow: var(--md-sys-elevation-1);
+    transition: box-shadow 0.2s ease-in-out 0s;
 }
 
 button {
-    min-height: 48px;
-    background-color: var(--button-background);
+    height: 40px;
+    border-radius: 20px;
     border: none;
     cursor: pointer;
+    color: var(--md-sys-color-on-primary);
+    background-color: var(--md-sys-color-primary);
 }
 
 .active {
     font-weight: bold;
-    background-color: var(--background);
+    color: var(--md-sys-color-on-primary-container);
+    background-color: var(--md-sys-color-primary-container);
 }
 
 @media only screen and (max-width: 640px) {
@@ -89,10 +131,6 @@ button {
         grid-template-columns: repeat(5, 1fr);
         grid-template-rows: repeat(2, 1fr);
         padding-bottom: 0.5em;
-    }
-
-    .day {
-        border-radius: 0.5em;
     }
 }
 
@@ -105,13 +143,14 @@ button {
 }
 
 .meal-frame {
-    background-color: var(--container-background);
+    background-color: var(--md-sys-color-secondary-container);
+    color: var(--md-sys-color-on-secondary-container);
     padding: 1em;
     margin-top: 1em;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5em;
+    border-radius: 1em;
     position: relative;
-    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .1)) drop-shadow(0 1px 1px rgba(0, 0, 0, .06))
+    box-shadow: var(--md-sys-elevation-1);
+    line-height: 1.6;
 }
 
 .contains {
@@ -123,10 +162,6 @@ button {
     right: 1%;
 }
 
-.category {
-    font-weight: 600;
-}
-
 .price {
     text-align: right;
     font-style: italic;
@@ -135,10 +170,9 @@ button {
 /* FOOTER */
 
 footer {
-    background-color: var(--accent-background);
+    color: var(--md-sys-color-primary);
     text-align: left;
     position: fixed;
     bottom: 0;
     padding: 1em;
-    font-weight: 300;
 }
