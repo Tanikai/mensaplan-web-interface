@@ -2,16 +2,17 @@ let facility_param;
 let date_param;
 let refresh_param;
 let daysArray = [];
-const mensen = {
-    "Mensa Uni": "Mensa",
-    "Bistro": "Bistro",
-    "Cafeteria West": "West",
-    "WestSideDiner": "Diner",
-    "Burgerbar Cafeteria SouthSide": "Burgerbar",
-    "Mensa Hochschule": "Prittwitzstr",
-    "Cafeteria Hochschulleitung": "Hochschulleitung",
-    "Hochschule Oberer Eselsberg": "HSOE",
-    "Cafeteria B": "CB"
+// HTML Tag : API
+const canteens = {
+    "Mensa Uni Süd": "Mensa",
+    "Cafeteria Nord Pizza und Pasta": "Bistro",
+    "Cafeteria Uni West": "West",
+    "Imbisswagen Westside Diner": "Diner",
+    "Burger Bar": "Burgerbar",
+    // "Mensa Hochschule": "Prittwitzstr",
+    // "Cafeteria Hochschulleitung": "Hochschulleitung",
+    // "Hochschule Oberer Eselsberg": "HSOE",
+    // "Cafeteria B": "CB"
 };
 const urlJSON = "https://uulm.anter.dev/api/v1/mensaplan.json";
 const urlStaticJSON = "./data/mensaplan_static.json";
@@ -24,8 +25,7 @@ function init() {
 
     if ((refresh_param !== undefined) && (refresh_interval === undefined)) {
         fetch_data().then(show_plan);
-        timedRefresh(5*1000); // debug: every 5 sec
-        // timedRefresh(10 * 60 * 1000); // every 10 minutes
+        timedRefresh(10 * 60 * 1000); // every 10 minutes
     } else {
         if ((mensa_plan === undefined) || (static_plan === undefined)) {
             fetch_data().then(show_plan);
@@ -251,7 +251,7 @@ function printPlan(plan) {
 }
 
 document.getElementById("mensa-select").onchange = function () {
-    facility_param = mensen[this.value];
+    facility_param = canteens[this.value];
     setAnchor(facility_param, date_param, refresh_param);
 };
 
