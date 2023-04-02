@@ -1,439 +1,378 @@
 {
-
-    "weeks": 
-
-[
-
-{
-
-    "days": 
-
-[
-
-{
-
-"date": "Monday",
-"Burgerbar": 
-
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Veggie: Sunny Veggie Burger",
-    "meal": "mit Ruccola und Sauerrahm-Dip",
-    "price": "3,50€ | Menü: 4,95€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Fleisch: Long Asia Chicken Burger",
-    "meal": "mit knackigem Eisbergsalat und Sweet Chili-Dip",
-    "price": "3,50€ | Menü: 4,75€",
-    "contains": "poultry"
-
-},
-{
-
-    "category": "Extra: Crisp Cut Potatoes",
-    "meal": "knusprige Kartoffel-Gitter mit mildem Salsageschmack",
-    "price": "1,80€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Portion Pommes",
-    "meal": "mit Ketchup oder Mayonnaise",
-    "price": "1,50€",
-    "contains": "veggie"
-
-}
-    ],
-    "open": true
-
-},
-"Diner":
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Pizzaschnitte",
-    "meal": "",
-    "price": "2,30€"
-
-},
-{
-
-    "category": "Currywurst",
-    "meal": "",
-    "price": "2,50€ | Menü 4,25€"
-
-},
-{
-
-    "category": "Currywurst mit Zwiebel",
-    "meal": "",
-    "price": "2,90€ | Menü 4,65€"
-
-},
-{    
-    "category": "Portion Pommes",
-    "meal": "",
-    "price": "1,50€"
-
-}
-],
-"open": true
-}
-},
-{
-
-"date": "Tuesday",
-"Burgerbar": 
-
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Veggie: Hanfburger",
-    "meal": "der etwas andere Burger",
-    "price": "3,50€ | Menü: 4,95€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Fleisch: Steakhouse Burger",
-    "meal": "der Klassiker mit Fleisch und BBQ-Dip",
-    "price": "3,90€ | Menü: 5,35€",
-    "contains": "beef"
-
-},
-{
-
-    "category": "Fleisch: Big Steakhouse Burger",
-    "meal": "mit doppelt Fleisch und BBQ-Dip",
-    "price": "4,90€ | Menü: 6,35€",
-    "contains": "beef"
-
-},
-{
-
-    "category": "Extra: Potato Wedges",
-    "meal": "würzige Kartoffelspalten mit Sour Cream (Sauerrahm)",
-    "price": "1,80€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Portion Pommes",
-    "meal": "mit Ketchup oder Mayonnaise",
-    "price": "1,50€",
-    "contains": "veggie"
-
-}
-    ],
-    "open": true
-
-},
-"Diner":
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Leberkäswecken",
-    "meal": "",
-    "price": "1,70€"
-
-},
-{
-
-    "category": "WestSideBurger Special",
-    "meal": "mit Pulled Pork",
-    "price": "3,90€ | Menü 5,65€"
-
-},
-{
-
-    "category": "7 Stück Falaffel mit Quark-Dip",
-    "meal": "",
-    "price": "3,20€"
-
-},
-{    
-    "category": "Portion Pommes",
-    "meal": "",
-    "price": "1,50€"
-
-}
-],
-"open": true
-}
-},
-
-{
-
-"date": "Wednesday",
-"Burgerbar": 
-
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Veggie: Texican Burger",
-    "meal": "Reis mit Hirtenkäse, Kidneybohnen und Mais",
-    "price": "3,90€ | Menü: 5,35€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Fleisch: Big Rösti Burger",
-    "meal": "der Berg grüßt mit knusprigem Bacon und Käse",
-    "price": "4,30€ | Menü: 5,75€",
-    "contains": "pig"
-
-},
-{
-
-    "category": "Extra: Chicken Nuggets",
-    "meal": "würzig paniert und goldgelb gebacken",
-    "price": "6 Stück 2,50€ | 9 Stück 3,50€",
-    "contains": "poultry"
-
-},
-{
-
-    "category": "Portion Pommes",
-    "meal": "mit Ketchup oder Mayonnaise",
-    "price": "1,50€",
-    "contains": "veggie"
-
-}
-    ],
-    "open": true
-
-},
-"Diner":
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Pizzaschnitte",
-    "meal": "",
-    "price": "2,30€"
-
-},
-{
-
-    "category": "Steakhouse Burger",
-    "meal": "",
-    "price": "3,90€ | Menü 5,65€"
-
-},
-{
-
-    "category": "6 Gemüse-Nuggets mit Dip",
-    "meal": "",
-    "price": "2,90€"
-
-}
-],
-"open": true
-}
-},
-{
-
-"date": "Thursday",
-"Burgerbar": 
-
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Veggie: Couscous Burger",
-    "meal": "mit hausgemachtem Bratling, Grillgemüse und Curry-Dip",
-    "price": "3,90€ | Menü: 5,35€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Fleisch: Onion Beef Burger",
-    "meal": "sehr lecker mit gebackenen Zwiebelringen und Knobi-Dip",
-    "price": "4,30€ | Menü: 5,75€",
-    "contains": "beef"
-
-},
-{
-
-    "category": "Extra: Twister Pommes",
-    "meal": "spiralig geschnittene, gedrehte Pommes, knusprig frittiert",
-    "price": "1,80€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Portion Pommes",
-    "meal": "mit Ketchup oder Mayonnaise",
-    "price": "1,50€",
-    "contains": "veggie"
-
-}
-    ],
-    "open": true
-
-},
-"Diner":
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Leberkäswecken",
-    "meal": "",
-    "price": "1,70€"
-
-},
-{
-
-    "category": "Steak vom Grill, mit Zwiebel oder Kräuterbutter",
-    "meal": "",
-    "price": "3,80€ | Menü 5,55€"
-
-},
-{
-
-    "category": "gebackener Camembert mit Preiselbeeren",
-    "meal": "",
-    "price": "2,80€"
-
-},
-{
-
-    "category": "Zwiebel oder Kräuterbutter extra",
-    "meal": "",
-    "price": "0,40€"
-
-}
-],
-"open": true
-}
-},
-{
-
-"date": "Friday",
-"Burgerbar": 
-
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "Veggie: Feta-Burger",
-    "meal": "mit gebackenem Feta und Zaziki-Dip",
-    "price": "3,90€ | Menü: 5,35€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Fleisch: South-Side Burger",
-    "meal": "mit Pulled Pork und weiteren Leckereien",
-    "price": "3,90€ | Menü: 5,35€",
-    "contains": "pig"
-
-},
-{
-
-    "category": "Extra: Mozarella Sticks",
-    "meal": "knusprig gebacken",
-    "price": "6 Stück 3,30€ | 9 Stück 4,50€",
-    "contains": "veggie"
-
-},
-{
-
-    "category": "Portion Pommes",
-    "meal": "mit Ketchup oder Mayonnaise",
-    "price": "1,50€",
-    "contains": "veggie"
-
-}
-    ],
-    "open": true
-
-},
-"Diner":
-{
-
-    "meals": 
-
-[
-
-{
-
-    "category": "frische Weißwurst",
-    "meal": "",
-    "price": "2,00€"
-
-},
-{
-
-    "category": "Dönburger im Fladenbrot",
-    "meal": "",
-    "price": "3,50€ | Menü 5,25€"
-
-},
-{
-
-    "category": "Wedges Quarkdip",
-    "meal": "",
-    "price": "2,00€"
-
-}
-],
-"open": true
-}
-}
-]
-}
-]
+  "weeks": [
+    {
+      "days": [
+        {
+          "date": "Monday",
+          "Burgerbar": {
+            "meals": [
+              {
+                "category": "Vegan: Süßkartoffel-Burger",
+                "meal": "Süßkartoffel-Patty mit Guacamole, Rucola und Genuss-Scheiben im Dinkelbrötchen",
+                "price": "4,20€ | Menü: 7,00€"
+              },
+              {
+                "category": "Fleisch: Mexiko-Burger",
+                "meal": "🐄 Rindfleisch-Patty mit Guacamole, Rucola und Emmentaler im Dinkelbrötchen",
+                "price": "5,25€ | Menü: 8.05€"
+              },
+              {
+                "category": "Portion Pommes",
+                "meal": "mit Ketchup oder Mayonnaise",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          },
+          "Diner": {
+            "meals": [
+              {
+                "category": "Vegetarisch und Vegan",
+                "meal": "Mini-Weizen-Bällchen in Currysoße mit Pommes",
+                "price": "4,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Grillwurst im Brötchen",
+                "price": "3,00€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Brötchen",
+                "price": "4,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Pommes",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Bayerischer Burger",
+                "price": "4,95€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Fleischkäse im Semmel",
+                "price": "2,20€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Feuerwurst im Baguette",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Soja-Weizen-Schnitzel im Semmel",
+                "price": "3,80€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Pommes",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          }
+        },
+        {
+          "date": "Tuesday",
+          "Burgerbar": {
+            "meals": [
+              {
+                "category": "Vegetarisch: Burger Steakhouse-Style",
+                "meal": "Schmelzkäsebratling mit BBQ-Dip, Salat und Käse im Sesambrötchen",
+                "price": "4,50€ | Menü: 7,30€"
+              },
+              {
+                "category": "Fleisch: Steakhouse Burger",
+                "meal": "🐄 Rindfleisch-Patty mit BBQ-Dip, Salat und Käse im Sesambrötchen",
+                "price": "4,75 € | Menü: 7,55€"
+              },
+              {
+                "category": "Portion Pommes",
+                "meal": "mit Ketchup oder Mayonnaise",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          },
+          "Diner": {
+            "meals": [
+              {
+                "category": "Vegetarisch und Vegan",
+                "meal": "Soja-Döner im Fladenbrot mit Tomaten, Gurken, Krautsalat, roten Zwiebeln",
+                "price": "3,80€"
+              },
+              {
+                "category": "Fleisch",
+                "meal": "Hähnchen-Gyros im Fladenbrot mit Gurken, Zaziki, roten Zwiebeln",
+                "price": "4,00€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Grillwurst im Brötchen",
+                "price": "3,00€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Brötchen",
+                "price": "4,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Pommes",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Bayerischer Burger",
+                "price": "4,95€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Fleischkäse im Semmel",
+                "price": "2,20€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Feuerwurst im Baguette",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Soja-Weizen-Schnitzel im Semmel",
+                "price": "3,80€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Pommes",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          }
+        },
+        {
+          "date": "Wednesday",
+          "Burgerbar": {
+            "meals": [
+              {
+                "category": "Vegetarisch: Burger Chick'n-Style",
+                "meal": "Panierter Schmelzkäsebratling mit Tomatensalsa und Camembert im Sesambrötchen Long Bun",
+                "price": "3,80€ | Menü: 6,60€"
+              },
+              {
+                "category": "Fleisch: Crunchy Chick'n Burger",
+                "meal": "🐓 Paniertes Hähnchenbrust-Patty mit Tomatensalsa und Camembert im Sesambrötchen",
+                "price": "3,90€ | Menü: 6,70€"
+              },
+              {
+                "category": "Portion Pommes",
+                "meal": "mit Ketchup oder Mayonnaise",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          },
+          "Diner": {
+            "meals": [
+              {
+                "category": "Vegetarisch und Vegan",
+                "meal": "Süße Mini-Kartoffel-Donuts mit Apfelmus",
+                "price": "3,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Grillwurst im Brötchen",
+                "price": "3,00€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Brötchen",
+                "price": "4,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Pommes",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Bayerischer Burger",
+                "price": "4,95€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Fleischkäse im Semmel",
+                "price": "2,20€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Feuerwurst im Baguette",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Soja-Weizen-Schnitzel im Semmel",
+                "price": "3,80€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Pommes",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          }
+        },
+        {
+          "date": "Thursday",
+          "Burgerbar": {
+            "meals": [
+              {
+                "category": "Vegetarisch: Homestyle-Burger",
+                "meal": "Falafel-Burger mit Tomate, Gurke, Salat und Cheddar im Sesambrötchen",
+                "price": "3,85€ | Menü: 6,65€"
+              },
+              {
+                "category": "Fleisch: Homestyle-Burger XL",
+                "meal": "🐄 Rindfleisch-Patty XL (200g) mit Tomaten, Gurke, Salat und Cheddar im Sesambrötchen",
+                "price": "7,35€ | Menü: 10,15€"
+              },
+              {
+                "category": "Portion Pommes",
+                "meal": "mit Ketchup oder Mayonnaise",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          },
+          "Diner": {
+            "meals": [
+              {
+                "category": "Vegetarisch und Vegan",
+                "meal": "Grillkäse-Burger im Focaccia Brötchen mit Tomaten, Gurken, roten Zwiebeln, Zaziki",
+                "price": "3,90€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Grillwurst im Brötchen",
+                "price": "3,00€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Brötchen",
+                "price": "4,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Pommes",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Bayerischer Burger",
+                "price": "4,95€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Fleischkäse im Semmel",
+                "price": "2,20€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Feuerwurst im Baguette",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Soja-Weizen-Schnitzel im Semmel",
+                "price": "3,80€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Pommes",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          }
+        },
+        {
+          "date": "Friday",
+          "Burgerbar": {
+            "meals": [
+              {
+                "category": "Vegetarisch: Italian Burger",
+                "meal": "Patty, Gemüse-Burger mit Rucola, Sour Cream, Tomate und Mozzarella im Focaccia-Burger Bun",
+                "price": "5,60€ | Menü: 8,40€"
+              },
+              {
+                "category": "Fleisch: Italian-Burger",
+                "meal": "🐄 Rindfleisch-Patty mit Rucola, Sour Cream, Tomate und Mozzarella im Focaccia-Burger Bun",
+                "price": "5,70€ | Menü: 8,50€"
+              },
+              {
+                "category": "Portion Pommes",
+                "meal": "mit Ketchup oder Mayonnaise",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          },
+          "Diner": {
+            "meals": [
+              {
+                "category": "Vegetarisch und Vegan",
+                "meal": "Veganer 'Backfisch' auf Gemüsebasis im Vollkorn Baguette",
+                "price": "4,10€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Grillwurst im Brötchen",
+                "price": "3,00€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Brötchen",
+                "price": "4,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Currywurst mit Pommes",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Bayerischer Burger",
+                "price": "4,95€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Fleischkäse im Semmel",
+                "price": "2,20€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Feuerwurst im Baguette",
+                "price": "5,50€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Soja-Weizen-Schnitzel im Semmel",
+                "price": "3,80€"
+              },
+              {
+                "category": "Dauerangebot",
+                "meal": "Pommes",
+                "price": "2,20€"
+              }
+            ],
+            "open": true
+          }
+        }
+      ]
+    }
+  ]
 }
