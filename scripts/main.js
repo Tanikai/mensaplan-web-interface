@@ -15,54 +15,74 @@ const mensen = {
 };
 const urlJSON = "https://uulm.anter.dev/api/v1/mensaplan.json";
 const urlStaticJSON = "./data/mensaplan_static.json";
+let mensa_plan;
+let static_plan;
+let refresh_interval = undefined;
 
 function init() {
-
     parseAnchor();
 
-    if (refresh !== undefined) timedRefresh(10 * 60 * 1000); //every 10 minutes
+    if ((refresh !== undefined) && (refresh_interval === undefined)) {
+        // timedRefresh(10 * 60 * 1000); // every 10 minutes
+        fetch_data().then(show_plan);
+        timedRefresh(5*1000); // debug: every 5 sec
+    } else {
+        if ((mensa_plan === undefined) || (static_plan === undefined)) {
+            fetch_data().then(show_plan);
+        } else {
+            show_plan();
+        }
+    }
+}
 
-    $.getJSON(urlJSON, (data) => {
-        let noOfWeeks = 1;
-        while (data.weeks[noOfWeeks] !== undefined) noOfWeeks++;
+function fetch_data() {
+    return Promise.all([
+        $.getJSON(urlJSON, (data) => {
+            mensa_plan = data;
+        }),
+        $.getJSON(urlStaticJSON, function (data) {
+            static_plan = data;
+        })
+    ]);
+}
 
-        const coordinates = getCoordinatesInJSON(date, data, noOfWeeks);
+function show_plan() {
+    let noOfWeeks = 1;
+    while (mensa_plan.weeks[noOfWeeks] !== undefined) noOfWeeks++;
 
-        date = coordinates.date;
+    const coordinates = getCoordinatesInJSON(date, mensa_plan, noOfWeeks);
 
-        reset();
+    date = coordinates.date;
 
-        if (daysArray[0] === undefined) {
-            //do this only when landing on page
-            initDaysList(data, noOfWeeks);
+    reset();
+
+    if (daysArray[0] === undefined) {
+        //do this only when landing on page
+        initDaysList(mensa_plan, noOfWeeks);
+    }
+
+    if (!(facility === "Diner" || facility === "Burgerbar")) {
+        if (coordinates.found === true) {
+            printPlan(mensa_plan.weeks[coordinates.week].days[coordinates.day][facility]);
+        }
+    } else
+        // static food plan -> different file
+    {
+        let weekday = new Date(date).getDay() - 1;
+
+        if (weekday === -1 || weekday === 5) {
+            // weekend--> show monday
+            weekday = 0;
         }
 
-        if (!(facility === "Diner" || facility === "Burgerbar")) {
-            if (coordinates.found === true) {
-                printPlan(data.weeks[coordinates.week].days[coordinates.day][facility]);
-            }
-        } else
-            // static food plan -> different file
-        {
-            $.getJSON(urlStaticJSON, function (staticData) {
+        printPlan(static_plan.weeks[0].days[weekday][facility]);
+    }
 
-                let weekday = new Date(date).getDay() - 1;
+    selectFacilityInDropdown();
 
-                if (weekday === -1 || weekday === 5) {
-                    // weekend--> show monday
-                    weekday = 0;
-                }
-
-                printPlan(staticData.weeks[0].days[weekday][facility]);
-            });
-        }
-
-        selectFacilityInDropdown();
-
-        const index = daysArray.indexOf(date);
-        if (index !== -1)
-            document.getElementById("day" + index).className = "day active";
-    });
+    const index = daysArray.indexOf(date);
+    if (index !== -1)
+        document.getElementById("day" + index).className = "day active";
 }
 
 /*
@@ -160,7 +180,7 @@ function getCoordinatesInJSON(date, data, noOfWeeks) {
 }
 
 function timedRefresh(timeoutPeriod) {
-    setInterval("init();", timeoutPeriod);
+    refresh_interval = setInterval("fetch_data().then(init);", timeoutPeriod);
 }
 
 function getDayString(offset) {
