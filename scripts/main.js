@@ -1,6 +1,6 @@
-let facility;
-let date;
-let refresh;
+let facility_param;
+let date_param;
+let refresh_param;
 let daysArray = [];
 const mensen = {
     "Mensa Uni": "Mensa",
@@ -22,10 +22,10 @@ let refresh_interval = undefined;
 function init() {
     parseAnchor();
 
-    if ((refresh !== undefined) && (refresh_interval === undefined)) {
-        // timedRefresh(10 * 60 * 1000); // every 10 minutes
+    if ((refresh_param !== undefined) && (refresh_interval === undefined)) {
         fetch_data().then(show_plan);
         timedRefresh(5*1000); // debug: every 5 sec
+        // timedRefresh(10 * 60 * 1000); // every 10 minutes
     } else {
         if ((mensa_plan === undefined) || (static_plan === undefined)) {
             fetch_data().then(show_plan);
@@ -50,9 +50,9 @@ function show_plan() {
     let noOfWeeks = 1;
     while (mensa_plan.weeks[noOfWeeks] !== undefined) noOfWeeks++;
 
-    const coordinates = getCoordinatesInJSON(date, mensa_plan, noOfWeeks);
+    const coordinates = getCoordinatesInJSON(date_param, mensa_plan, noOfWeeks);
 
-    date = coordinates.date;
+    date_param = coordinates.date;
 
     reset();
 
@@ -61,26 +61,26 @@ function show_plan() {
         initDaysList(mensa_plan, noOfWeeks);
     }
 
-    if (!(facility === "Diner" || facility === "Burgerbar")) {
+    if (!(facility_param === "Diner" || facility_param === "Burgerbar")) {
         if (coordinates.found === true) {
-            printPlan(mensa_plan.weeks[coordinates.week].days[coordinates.day][facility]);
+            printPlan(mensa_plan.weeks[coordinates.week].days[coordinates.day][facility_param]);
         }
     } else
         // static food plan -> different file
     {
-        let weekday = new Date(date).getDay() - 1;
+        let weekday = new Date(date_param).getDay() - 1;
 
         if (weekday === -1 || weekday === 5) {
             // weekend--> show monday
             weekday = 0;
         }
 
-        printPlan(static_plan.weeks[0].days[weekday][facility]);
+        printPlan(static_plan.weeks[0].days[weekday][facility_param]);
     }
 
     selectFacilityInDropdown();
 
-    const index = daysArray.indexOf(date);
+    const index = daysArray.indexOf(date_param);
     if (index !== -1)
         document.getElementById("day" + index).className = "day active";
 }
@@ -91,29 +91,29 @@ function show_plan() {
 function parseAnchor() {
     const anchor = window.location.hash.substr(1);
     if (anchor === "") { // default: Mensa, today
-        facility = 'Mensa';
-        date = getDayString(0);
+        facility_param = 'Mensa';
+        date_param = getDayString(0);
     } else {
-        facility = anchor.split('&')[0];
-        date = anchor.split('&')[1];
-        refresh = anchor.split('&')[2];
-        if (date === "today" || date === "heute" || date === undefined)
-            date = getDayString(0);
-        if (date === "tomorrow" || date === "morgen")
-            date = getDayString(1);
-        if (date === "yesterday" || date === "gestern")
-            date = getDayString(-1);
-        if (date === "next")// shows today's plan during opening hours,
+        facility_param = anchor.split('&')[0];
+        date_param = anchor.split('&')[1];
+        refresh_param = anchor.split('&')[2];
+        if (date_param === "today" || date_param === "heute" || date_param === undefined)
+            date_param = getDayString(0);
+        if (date_param === "tomorrow" || date_param === "morgen")
+            date_param = getDayString(1);
+        if (date_param === "yesterday" || date_param === "gestern")
+            date_param = getDayString(-1);
+        if (date_param === "next")// shows today's plan during opening hours,
             // tomorrows when facility is closed
             // (exact to one hour)
         {
             const now = new Date().getHours();
             let closingTime = 14;
-            if (facility === "bistro") closingTime = 19;
+            if (facility_param === "bistro") closingTime = 19;
             if (now < closingTime)
-                date = getDayString(0);
+                date_param = getDayString(0);
             else
-                date = getDayString(1);
+                date_param = getDayString(1);
         }
     }
 }
@@ -151,10 +151,11 @@ function getCoordinatesInJSON(date, data, noOfWeeks) {
                 }
             }
         }
-        if (found === false) {//closed today, maybe plan for tomorrow?
+        if (found === false) { //closed today, maybe plan for tomorrow?
             date = getISOStringOfDate(new Date(new Date(date).getTime() + 24 * 60 * 60 * 1000));
         } else break;
     }
+
     if (found === false) {
         // failsafe: requested date and the next two days not
         // found, try today. If that doesn't work either
@@ -171,6 +172,7 @@ function getCoordinatesInJSON(date, data, noOfWeeks) {
             };
         }
     }
+
     return {
         "week": week,
         "day": day,
@@ -180,7 +182,10 @@ function getCoordinatesInJSON(date, data, noOfWeeks) {
 }
 
 function timedRefresh(timeoutPeriod) {
-    refresh_interval = setInterval("fetch_data().then(init);", timeoutPeriod);
+    refresh_interval = setInterval(() => {
+        console.log("refreshed", new Date());
+        fetch_data().then(init);
+    }, timeoutPeriod);
 }
 
 function getDayString(offset) {
@@ -201,7 +206,7 @@ function addDateToWeekdays(startDate, startIndex) {
 
 function selectFacilityInDropdown() {
     let sel = document.getElementById("mensa-select");
-    const val = document.getElementById("facility" + facility).value;
+    const val = document.getElementById("facility" + facility_param).value;
     for (let i = 0, j = sel.options.length; i < j; ++i) {
         if (sel.options[i].innerHTML === val) {
             sel.selectedIndex = i;
@@ -246,13 +251,13 @@ function printPlan(plan) {
 }
 
 document.getElementById("mensa-select").onchange = function () {
-    facility = mensen[this.value];
-    setAnchor(facility, date, refresh);
+    facility_param = mensen[this.value];
+    setAnchor(facility_param, date_param, refresh_param);
 };
 
 function openDay(idx) {
-    date = daysArray[idx];
-    setAnchor(facility, date, refresh);
+    date_param = daysArray[idx];
+    setAnchor(facility_param, date_param, refresh_param);
 }
 
 function getISOStringOfDate(date2) {
@@ -303,9 +308,9 @@ function setAnchor(facility, day, refresh) {
 */
 function adjacentDay(direction) {
     for (let i = 0; i < 3; i++) {
-        const day = getISOStringOfDate(new Date(new Date(date).getTime() + direction * (i + 1) * 24 * 60 * 60 * 1000));
+        const day = getISOStringOfDate(new Date(new Date(date_param).getTime() + direction * (i + 1) * 24 * 60 * 60 * 1000));
         if ($.inArray(day, daysArray) !== -1) {
-            setAnchor(facility, day, refresh);
+            setAnchor(facility_param, day, refresh_param);
             break;
         }
     }
