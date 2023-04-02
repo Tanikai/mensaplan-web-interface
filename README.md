@@ -1,54 +1,95 @@
-Web UI for the canteens of Ulm University and other institutions where the Studierendenwerk Ulm organises the food supply.
+# Ulm University Mensaplan
 
-This UI is in use and can be found here: http://uni-ulm.de/mensaplan
+This project contains a web UI for the daily canteen plans at Ulm University. The following canteens are supported:
 
-# Usage
+- Mensa Uni Süd
+- Cafeteria Nord
+- Burgerbar
+- Cafeteria West
+- Westside Diner
 
-The plan can be configured through setting the anchor or by using the UI elements which in turn change the anchor.
+This project was forked from 
+[github.com/seder/mensaplan-web-interface](https://github.com/seder/mensaplan-web-interface)
+and contains some improvements. See section [Changes](#changes) for more details.
 
-The anchor is structured as follows: #\<facility\>&\<date\>&\<refresh\>
+## Try it out
 
-The order and positions are fixed.
+- [mensaplan2.anter.dev](https://mensaplan2.anter.dev) for today's plan.
+- [mensaplan2.anter.dev/#Mensa&today&refresh](https://mensaplan2.anter.dev/#Mensa&today&refresh) for automatic page
+  refresh, e.g. for kiosk usage.
 
-## Facility 
+## URL structure
 
-Facility can be one of the following:
+The plan can be configured by setting the anchor or by using the UI elements which in turn change the anchor.
+**The order and positions are fixed.**
 
-> Mensa, Bistro, West, Diner, Burgerbar, Prittwitzstr, CB
+The anchor is structured as follows: `base_url/#<facility>&<date>&<refresh>`
 
-If no argument is given, Mensa will be used as default. This list might be extended when the parser is extended.
+### Canteen
 
-## Date
+You have to use the following values:
 
-Date can be a date in the form YYYY-MM-DD (ISO 8601) or can be one of the following:
+- `Mensa` (Mensa Uni Süd)
+- `Bistro` (Cafeteria Nord)
+- `Burgerbar` (Burgerbar at Cafeteria Southside)
+- `West` (Cafeteria West)
+- `Diner` (Westside Diner)
 
-> tomorrow, yesterday, today, heute, gestern, morgen, next
+If no argument is given, Mensa Süd will be used as default.
 
-* If no argument is given, today/heute will be used as default.
-* "next" means, that the plan of the mensa will be shown of the next time the facility is open. So during or before opening hours, today's plan and after the facility closes tomorrow's plan (or the plan for the next day the facility opens).
+### Date
 
-In any case: if the facility is closed at that day, the data from the next time it is open will be shown, given that the data is present. 
+The date can in the format YYYY-MM-DD (ISO 8601) or one of the following keywords:
 
-## Refresh
+- `tomorrow`
+- `morgen`
+- `yesterday`
+- `today`
+- `heute`
+- `gestern`
+- `next`
 
-Refresh can be "refresh" or not set (undefined). If it is set, the plan will be refreshed every ten minutes. This can be used for static displays e.g. in the institute coffee kitchen or the student union office.
+- If no argument is given, `today`/`heute` will be used as default.
+- `next` means, that the plan of the mensa will be shown of the next time the facility is open. So during or before
+  opening hours, today's plan and after the facility closes tomorrow's plan (or the plan for the next day the facility
+  opens).
+
+In any case: if the canteen is closed at that day, the data from the next time it is open will be shown, given that the
+data is present.
+
+### Refresh
+
+Refresh can be `refresh` or not set (undefined). If it is set, the plan will be refreshed every ten minutes. This can be
+used for static displays / kiosks, e.g. in the institute coffee kitchen or the student union office.
 
 ## Examples
 
->\<no anchor\>
+>base_url
 
 Does the same as
 
->\#Mensa&today
+>base_url/#Mensa&today
 
->\#Mensa&heute
+>base_url/#Mensa&heute
 
 and the same as
 
->\#Mensa&next
+>base_url/#Mensa&next
 
 during and before opening hours and
 
->\#Mensa&YYYY-MM-DD
+>base_url/#Mensa&YYYY-MM-DD
 
 where YYYY-MM-DD is today's date.
+
+## Changes
+
+- Reduced API call count from every day change to once at beginning
+- Changed data source to [uulm.anter.dev/api/v1/mensaplan.json](https://uulm.anter.dev/api/v1/mensaplan.json) with better PDF parser
+- Improved UI based on some [Material 3 principles](https://m3.material.io/)
+- General refactoring of JavaScript code
+
+
+## Contact
+
+Kai Anter - [www.anter.dev](https://www.anter.dev) - [Mastodon](https://hachyderm.io/@Tanikai)
