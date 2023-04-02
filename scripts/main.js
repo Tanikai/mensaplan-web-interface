@@ -217,15 +217,7 @@ function printPlan(plan) {
         for (let i = 0; i < plan.meals.length; i++) {
             const tr = document.createElement('div');
             tr.className = "meal-frame";
-            let mealWidth = "100%";
-            if (plan.meals[i].contains !== undefined) {
-                let img = document.createElement('img');
-                img.src = "img/" + plan.meals[i].contains + ".png";
-                img.alt = "This meal contains " + plan.meals[i].contains + ".";
-                img.className = "contains";
-                mealWidth = "90%";
-                tr.appendChild(img);
-            }
+
             let td = document.createElement('div');
             td.className = "category";
             td.appendChild(document.createTextNode(plan.meals[i].category));
@@ -233,7 +225,6 @@ function printPlan(plan) {
             td = document.createElement('div');
             td.className = "meal";
             td.appendChild(document.createTextNode(plan.meals[i].meal));
-            td.style.width = mealWidth;
             tr.appendChild(td);
             td = document.createElement('div');
             td.className = "price";
