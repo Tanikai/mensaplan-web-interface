@@ -20,14 +20,21 @@ and contains some improvements. See section [Changes](#changes) for more details
 
 ## URL structure
 
-The plan can be configured by setting the anchor or by using the UI elements which in turn change the anchor.
-**The order and positions are fixed.**
+The plan can be configured by setting the anchor or by using the UI elements, which in turn change the anchor.
 
-The anchor is structured as follows: `base_url/#<facility>&<date>&<refresh>`
+The anchor is structured as follows: `base_url/#<query_str>` where `<query_str>` is
+a [query string](https://en.wikipedia.org/wiki/Query_string). There are three (order independent) parameters:
+
+- `canteen` (String)
+- `date` (String, formatted in YYYY-MM-DD)
+- `reload` (Boolean)
+
+Please note the `#` in front of the query string. This allows navigating / refreshing the website without sending a
+request to the server every time.
 
 ### Canteen
 
-You have to use the following values:
+The `canteen` parameter has the data type String. The following canteens are supported / allowed:
 
 - `Mensa` (Mensa Uni Süd)
 - `Bistro` (Cafeteria Nord)
@@ -39,7 +46,8 @@ If no argument is given, Mensa Süd will be used as default.
 
 ### Date
 
-The date can in the format YYYY-MM-DD (ISO 8601) or one of the following keywords:
+The `date` parameter has the data type String. The date has to be in the format `YYYY-MM-DD` (ISO 8601) or one of the
+following keywords:
 
 - `tomorrow`
 - `morgen`
@@ -49,18 +57,19 @@ The date can in the format YYYY-MM-DD (ISO 8601) or one of the following keyword
 - `gestern`
 - `next`
 
+Note:
+
 - If no argument is given, `today`/`heute` will be used as default.
 - `next` means, that the plan of the mensa will be shown of the next time the facility is open. So during or before
   opening hours, today's plan and after the facility closes tomorrow's plan (or the plan for the next day the facility
-  opens).
-
-In any case: if the canteen is closed at that day, the data from the next time it is open will be shown, given that the
-data is present.
+  opens). 
+- In any case: if the canteen is closed at that day, the data from the next time it is open will be shown, given that
+  the data is present.
 
 ### Refresh
 
-Refresh can be `refresh` or not set (undefined). If it is set, the plan will be refreshed every ten minutes. This can be
-used for static displays / kiosks, e.g. in the institute coffee kitchen or the student union office.
+If the parameter `refresh` is set to `true`, the plan will be refreshed every ten minutes. This can be used for static
+displays / kiosks, e.g. in the institute coffee kitchen or the student union office.
 
 ## Examples
 
@@ -68,17 +77,17 @@ used for static displays / kiosks, e.g. in the institute coffee kitchen or the s
 
 Does the same as
 
->base_url/#Mensa&today
+>base_url/#?canteen=Mensa&date=today
 
->base_url/#Mensa&heute
+>base_url/#?canteen=Mensa&date=heute
 
 and the same as
 
->base_url/#Mensa&next
+>base_url/#?canteen=Mensa&date=next
 
 during and before opening hours and
 
->base_url/#Mensa&YYYY-MM-DD
+>base_url/#?canteen=Mensa&date=YYYY-MM-DD
 
 where YYYY-MM-DD is today's date.
 
@@ -88,7 +97,7 @@ where YYYY-MM-DD is today's date.
 - Changed data source to [uulm.anter.dev/api/v1/mensaplan.json](https://uulm.anter.dev/api/v1/mensaplan.json) with better PDF parser
 - Improved UI based on some [Material 3 principles](https://m3.material.io/)
 - General refactoring of JavaScript code
-
+- Changed URL Query string parsing to be order independent
 
 ## Contact
 

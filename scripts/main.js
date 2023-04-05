@@ -1,6 +1,6 @@
 let facility_param;
 let date_param;
-let refresh_param;
+let refresh_param = false;
 let daysArray = [];
 // HTML Tag : API
 const canteens = {
@@ -20,13 +20,30 @@ let mensa_plan;
 let static_plan;
 let refresh_interval = undefined;
 
-function init() {
-    parseAnchor();
+const CANTEEN_PARAM = "canteen";
+const DATE_PARAM = "date";
+const REFRESH_PARAM = "refresh";
 
-    if ((refresh_param !== undefined) && (refresh_interval === undefined)) {
+function init() {
+    parseURLAnchor();
+    // console.log("new params:", {
+    //     "canteen": facility_param,
+    //     "date": date_param,
+    //     "refresh": refresh_param,
+    // });
+
+    if (refresh_param === true) {
         fetch_data().then(show_plan);
-        timedRefresh(10 * 60 * 1000); // every 10 minutes
+        if (refresh_interval === undefined) {
+            timedRefresh(10 * 60 * 1000); // every 10 minutes
+            // timedRefresh(3 * 1000); // every 3 seconds
+        }
     } else {
+        if (refresh_interval !== undefined) {
+            clearInterval(refresh_interval); // remove interval when url parameter is missing
+            refresh_interval = undefined;
+        }
+
         if ((mensa_plan === undefined) || (static_plan === undefined)) {
             fetch_data().then(show_plan);
         } else {
@@ -86,36 +103,63 @@ function show_plan() {
 }
 
 /*
-* sets global variables facility, date, and refresh according to anchor
+* sets global variables facility, date, and refresh according to QueryParams in URL
 */
-function parseAnchor() {
-    const anchor = window.location.hash.substr(1);
-    if (anchor === "") { // default: Mensa, today
-        facility_param = 'Mensa';
-        date_param = getDayString(0);
+function parseURLAnchor() {
+    const url = new URL(window.location.toLocaleString());
+    const urlParams = new URLSearchParams(url.hash.substring(1)); // use hash instead of queryparams because parameters are passed inside hash
+    let date = urlParams.get(DATE_PARAM);
+
+    let canteen = urlParams.get(CANTEEN_PARAM);
+    if (Object.values(canteens).includes(canteen)) {
+        facility_param = canteen;
     } else {
-        facility_param = anchor.split('&')[0];
-        date_param = anchor.split('&')[1];
-        refresh_param = anchor.split('&')[2];
-        if (date_param === "today" || date_param === "heute" || date_param === undefined)
+        facility_param = "Mensa";
+    }
+
+    // Parse Date parameter
+    switch (date) {
+        case null: // If no date is given, use today's date
+        case "today":
+        case "heute":
             date_param = getDayString(0);
-        if (date_param === "tomorrow" || date_param === "morgen")
+            break;
+        case "tomorrow":
+        case "morgen":
             date_param = getDayString(1);
-        if (date_param === "yesterday" || date_param === "gestern")
+            break;
+        case "yesterday":
+        case "gestern":
             date_param = getDayString(-1);
-        if (date_param === "next")// shows today's plan during opening hours,
-            // tomorrows when facility is closed
+            break;
+        case "next": {
+            // shows today during opening hours,
+            // tomorrow when facility is closed
             // (exact to one hour)
-        {
             const now = new Date().getHours();
             let closingTime = 14;
-            if (facility_param === "bistro") closingTime = 19;
+            if (facility_param === "bistro") closingTime = 19; // FIXME
             if (now < closingTime)
                 date_param = getDayString(0);
             else
                 date_param = getDayString(1);
         }
+            break;
+        default: {
+            // try parsing the date
+            let check = new Date(date);
+            if (check instanceof Date && !isNaN(check.valueOf())) {
+                date_param = date;
+            } else {
+                // failsafe
+                date_param = getDayString(0);
+            }
+        }
+            break;
     }
+
+    let refresh = urlParams.get(REFRESH_PARAM);
+    refresh_param = (refresh !== null) && (refresh.toLowerCase() === "true");
 }
 
 function initDaysList(data, noOfWeeks) {
@@ -182,14 +226,17 @@ function getCoordinatesInJSON(date, data, noOfWeeks) {
 }
 
 function timedRefresh(timeoutPeriod) {
+    if (refresh_interval !== undefined) return;
+
     refresh_interval = setInterval(() => {
-        console.log("refreshed", new Date());
-        fetch_data().then(init);
+        fetch_data().then(() => {
+            setAnchor(facility_param, getDayString(0), refresh_param);
+        });
     }, timeoutPeriod);
 }
 
-function getDayString(offset) {
-    const day = new Date(new Date().getTime() + offset * 24 * 60 * 60 * 1000);
+function getDayString(day_offset) {
+    const day = new Date(new Date().getTime() + day_offset * 24 * 60 * 60 * 1000);
     return getISOStringOfDate(day);
 }
 
@@ -298,10 +345,10 @@ function reset() {
 }
 
 function setAnchor(facility, day, refresh) {
-    if (refresh !== undefined)
-        window.location.assign('#' + facility + "&" + day + "&refresh");
+    if (refresh === true)
+        window.location.assign(`#?${CANTEEN_PARAM}=${facility}&${DATE_PARAM}=${day}&${REFRESH_PARAM}=true`);
     else
-        window.location.assign('#' + facility + "&" + day);
+        window.location.assign(`#?${CANTEEN_PARAM}=${facility}&${DATE_PARAM}=${day}`);
 }
 
 /*
