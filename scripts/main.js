@@ -99,7 +99,7 @@ function show_plan() {
 
     const index = daysArray.indexOf(date_param);
     if (index !== -1)
-        document.getElementById("day" + index).className = "day active";
+        document.getElementById("day" + index).className += " active";
 }
 
 /*
@@ -174,9 +174,6 @@ function initDaysList(data, noOfWeeks) {
         addDateToWeekdays(mon1, 0);
         addDateToWeekdays(mon2, 5);
     } else {
-        document.getElementById('2ndWeek').style.display = "none";
-        document.getElementById('separator').style.display = "none";
-        document.getElementById('1stWeek').style.width = "100%";
         addDateToWeekdays(getDateOfISOWeek(data.weeks[0].weekNumber), 0);
     }
 }
@@ -241,12 +238,16 @@ function getDayString(day_offset) {
 }
 
 function addDateToWeekdays(startDate, startIndex) {
+    let today = getISOStringOfDate(new Date);
     let dateToAdd = startDate;
     for (let i = startIndex; i < startIndex + 5; i++) {
         daysArray[i] = getISOStringOfDate(dateToAdd);
         let dayToShow = dateToAdd.getDate();
         if (dayToShow <= 9) dayToShow = "0" + dayToShow;
         document.getElementById("day" + i).textContent = dayToShow + " " + document.getElementById("day" + i).textContent;
+        if (daysArray[i] === today) {
+            document.getElementById("day" + i).className += " today";
+        }
         dateToAdd = new Date(dateToAdd.getTime() + 24 * 60 * 60 * 1000);
     }
 }
@@ -338,9 +339,17 @@ function getDateOfISOWeek(weekNumber) {
 }
 
 function reset() {
+    // remove active class from buttons
+    const today = getISOStringOfDate(new Date);
     for (let i = 0; i < 10; i++) {
-        document.getElementById("day" + i).className = "day";
+        const button = document.getElementById("day" + i);
+        let isToday = "";
+        if (daysArray[i] === today) {
+            isToday = " today";
+        }
+        button.className = `day${isToday}`;
     }
+    // delete all meal frames from container
     $("div").remove(".meal-frame");
 }
 

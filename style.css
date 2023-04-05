@@ -125,6 +125,10 @@ button {
     background-color: var(--md-sys-color-primary-container);
 }
 
+.today {
+    border: 1px solid var(--md-sys-color-primary);
+}
+
 @media only screen and (max-width: 640px) {
     #day-selection {
         gap: 0.25rem;
