@@ -16,11 +16,16 @@
     <meta name="description"
           content="Aktueller Mensaplan der Uni Ulm bzw. Studierendenwerk Ulm mit korrekten Preisen für Studierende.">
     <meta name="keywords" content="Universität Ulm Studierendenwerk Mensa Plan Süd">
-    <script src="libs/jquery-3.6.4.min.js"></script>
+    <script defer src="libs/jquery-3.6.4.min.js"></script>
     <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script>
+        document.addEventListener('DOMContentLoaded', function(){
+            init();
+        });
+    </script>
 </head>
 
-<body onload="init()" onKeyDown="pressed(event)" onhashchange="init()">
+<body onKeyDown="pressed(event)" onhashchange="init()">
 <header>
     <nav id="canteen-selection">
         <h1><a href="#">UUlm Mensa</a></h1>
