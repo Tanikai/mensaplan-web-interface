@@ -99,6 +99,9 @@ where YYYY-MM-DD is today's date.
 - General refactoring of JavaScript code
 - Changed URL Query string parsing to be order independent
 
+## Alternatives
+- [Mensa TUI](https://github.com/LukasPietzschmann/uulm-mensa-tui): If you are a terminal lover, you can also use the terminal application a friend of mine wrote
+
 ## Contact
 
 Kai Anter - [www.anter.dev](https://www.anter.dev) - [Mastodon](https://hachyderm.io/@Tanikai)
