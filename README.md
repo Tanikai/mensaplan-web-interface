@@ -100,6 +100,7 @@ where YYYY-MM-DD is today's date.
 - Changed URL Query string parsing to be order independent
 
 ## Alternatives
+
 - [Mensa TUI](https://github.com/LukasPietzschmann/uulm-mensa-tui): If you are a terminal lover, you can also use the terminal application a friend of mine wrote
 
 ## Contact
