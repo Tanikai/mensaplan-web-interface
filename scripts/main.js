@@ -279,7 +279,11 @@ function printPlan(plan) {
             tr.appendChild(td);
             td = document.createElement('div');
             td.className = "meal";
-            td.appendChild(document.createTextNode(plan.meals[i].meal));
+
+            let mealText = plan.meals[i].meal
+            if (plan.meals[i].type != "")
+                mealText += ` (${plan.meals[i].type})`
+            td.appendChild(document.createTextNode(mealText));
             tr.appendChild(td);
             td = document.createElement('div');
             td.className = "price";
