@@ -14,8 +14,8 @@ and contains some improvements. See section [Changes](#changes) for more details
 
 ## Try it out
 
-- [mensaplan2.anter.dev](https://mensaplan2.anter.dev) for today's plan.
-- [mensaplan2.anter.dev/#Mensa&today&refresh](https://mensaplan2.anter.dev/#Mensa&today&refresh) for automatic page
+- [mensaplan.anter.dev](https://mensaplan2.anter.dev) for today's plan.
+- [mensaplan.anter.dev/#Mensa&today&refresh](https://mensaplan2.anter.dev/#Mensa&today&refresh) for automatic page
   refresh, e.g. for kiosk usage.
 
 ## URL structure
