@@ -281,7 +281,7 @@ function printPlan(plan) {
             td.className = "meal";
 
             let mealText = plan.meals[i].meal
-            if (plan.meals[i].type != "")
+            if (plan.meals[i].type != "" && plan.meals[i].type != null)
                 mealText += ` (${plan.meals[i].type})`
             td.appendChild(document.createTextNode(mealText));
             tr.appendChild(td);
