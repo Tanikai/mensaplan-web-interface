@@ -1,5 +1,13 @@
 # Ulm University Mensaplan
 
+## Note
+
+This repository is no longer maintained. See
+[Tanikai/uniulm_mensa_frontend](https://github.com/Tanikai/uniulm_mensa_frontend/) for a new PWA version with
+nutrition information and diet filtering.
+
+## About
+
 This project contains a web UI for the daily canteen plans at Ulm University. The following canteens are supported:
 
 - Mensa Uni Süd
